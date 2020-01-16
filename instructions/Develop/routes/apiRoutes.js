@@ -19,7 +19,7 @@ router.post("/notes", function(req, res) {
 
 router.delete("/notes/:id", function(req, res) {
     store
-    .removeNote(req.params.id)
+    .removeUnwantedNote(req.params.id)
     .then(() => res.json( {ok: true} ))
     .catch(err => res.status(500).json(err))
 });

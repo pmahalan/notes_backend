@@ -46,7 +46,7 @@ class HandyDandyStorageMechanism {
         .then(() => newNote)
     }
 
-    removeNote(id) {
+    removeUnwantedNote(id) {
         return this.getAwesomeNotes()
         .then(notes => notes.filter(note => note.id !== parseInt(id)))
         .then(filteredNotes => this.write(filteredNotes));
