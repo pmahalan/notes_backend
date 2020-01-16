@@ -31,7 +31,7 @@ class HandyDandyStorageMechanism {
         })
     }
 
-    addNote(note) {
+    addSpectacularNote(note) {
         const { title, text } = note;
 
         if (!title || !text) {

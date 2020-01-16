@@ -12,7 +12,7 @@ router.get("/notes", function(req, res) {
 
 router.post("/notes", function(req, res) {
     store
-    .addNote(req.body)
+    .addSpectacularNote(req.body)
     .then((note) => res.json(note))
     .catch(err => res.status(500).json(err))
 });
