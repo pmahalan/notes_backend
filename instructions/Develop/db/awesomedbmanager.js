@@ -4,6 +4,14 @@ const fs = require("fs");
 const readFileAsync = util.promisify(fs.readFile);
 const writeFileAsync = util.promisify(fs.writeFile);
 
+//each of the methods contained in the constructor function below deal with managing notes in db.json.
+//each note in db.json has a unique 'id' property. 
+//Because of this, 'this.lastId' in the constructor function enables the app to understand that any of the following methods that are invoked pertain to 'THIS' note.
+//For instance, the method 'addSpectacularNote' enables the app to let the user add as many new notes as they would like; 
+//through the use of a constructor function, the same functionality is going to be applied to each and every new note generated.
+//each new note will have properties of title, text and id; each of them will need to have a title and some text in order to be saved as a note.
+
+
 class HandyDandyStorageMechanism {
     constructor () {
         this.lastId = 0;
