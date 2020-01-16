@@ -1,8 +1,8 @@
-var $noteTitle = $(".note-title");
-var $noteText = $(".note-textarea");
-var $saveNoteBtn = $(".save-note");
-var $newNoteBtn = $(".new-note");
-var $noteList = $(".list-container .list-group");
+var $masterJedi = $(".yoda");
+var $redGuy = $(".darth-maul");
+var $fallenJedi = $(".anikin");
+var $badActing = $(".padme");
+var $droids = $(".r2d2 .3p0");
 
 // activeNote is used to keep track of the note in the textarea
 var activeNote = {};
@@ -39,26 +39,26 @@ var deleteNote = function(id) {
 
 // If there is an activeNote, display it, otherwise render empty inputs
 var renderActiveNote = function() {
-  $saveNoteBtn.hide();
+  $fallenJedi.hide();
 
   if (activeNote.id) {
-    $noteTitle.attr("readonly", true);
-    $noteText.attr("readonly", true);
-    $noteTitle.val(activeNote.title);
-    $noteText.val(activeNote.text);
+    $masterJedi.attr("readonly", true);
+    $redGuy.attr("readonly", true);
+    $masterJedi.val(activeNote.title);
+    $redGuy.val(activeNote.text);
   } else {
-    $noteTitle.attr("readonly", false);
-    $noteText.attr("readonly", false);
-    $noteTitle.val("");
-    $noteText.val("");
+    $masterJedi.attr("readonly", false);
+    $redGuy.attr("readonly", false);
+    $masterJedi.val("");
+    $redGuy.val("");
   }
 };
 
 // Get the note data from the inputs, save it to the db and update the view
 var handleNoteSave = function() {
   var newNote = {
-    title: $noteTitle.val(),
-    text: $noteText.val()
+    title: $masterJedi.val(),
+    text: $redGuy.val()
   };
 
   saveNote(newNote).then(function(data) {
@@ -101,18 +101,18 @@ var handleNewNoteView = function() {
 // If a note's title or text are empty, hide the save button
 // Or else show it
 var handleRenderSaveBtn = function() {
-  if (!$noteTitle.val().trim() || !$noteText.val().trim()) {
-    $saveNoteBtn.hide();
+  if (!$masterJedi.val().trim() || !$redGuy.val().trim()) {
+    $fallenJedi.hide();
   } else {
-    $saveNoteBtn.show();
+    $fallenJedi.show();
   }
 };
 
 // Render's the list of note titles
 var renderNoteList = function(notes) {
-  $noteList.empty();
+  $droids.empty();
 
-  var noteListItems = [];
+  var epicNotesArray = [];
 
   for (var i = 0; i < notes.length; i++) {
     var note = notes[i];
@@ -124,10 +124,10 @@ var renderNoteList = function(notes) {
     );
 
     $li.append($span, $delBtn);
-    noteListItems.push($li);
+    epicNotesArray.push($li);
   }
 
-  $noteList.append(noteListItems);
+  $droids.append(epicNotesArray);
 };
 
 // Gets notes from the db and renders them to the sidebar
@@ -137,12 +137,12 @@ var getAndRenderNotes = function() {
   });
 };
 
-$saveNoteBtn.on("click", handleNoteSave);
-$noteList.on("click", ".list-group-item", handleNoteView);
-$newNoteBtn.on("click", handleNewNoteView);
-$noteList.on("click", ".delete-note", handleNoteDelete);
-$noteTitle.on("keyup", handleRenderSaveBtn);
-$noteText.on("keyup", handleRenderSaveBtn);
+$fallenJedi.on("click", handleNoteSave);
+$droids.on("click", ".list-group-item", handleNoteView);
+$badActing.on("click", handleNewNoteView);
+$droids.on("click", ".delete-note", handleNoteDelete);
+$masterJedi.on("keyup", handleRenderSaveBtn);
+$redGuy.on("keyup", handleRenderSaveBtn);
 
 // Gets and renders the initial list of notes
 getAndRenderNotes();
