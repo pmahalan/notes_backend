@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const store = require("../db/store");
+const store = require("../db/awesomedbmanager");
 
 //GET /api/notes responds with all notes from teh db
 
