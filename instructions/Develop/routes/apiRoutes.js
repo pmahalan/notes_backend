@@ -5,7 +5,7 @@ const store = require("../db/awesomedbmanager");
 
 router.get("/notes", function(req, res) {
     store
-    .getNotes()
+    .getAwesomeNotes()
     .then(notes => res.json(notes))
     .catch(err => res.status(500).json(err))
 });

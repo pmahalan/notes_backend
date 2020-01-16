@@ -17,7 +17,7 @@ class HandyDandyStorageMechanism {
         return writeFileAsync("db/db.json", JSON.stringify(note));
     }
 
-    getNotes() {
+    getAwesomeNotes() {
         return this.read().then(notes => {
             let parsedNotes;
 
@@ -40,14 +40,14 @@ class HandyDandyStorageMechanism {
 
         const newNote = {title, text, id: ++this.lastId};
 
-        return this.getNotes()
+        return this.getAwesomeNotes()
         .then(notes => [...notes, newNote])
         .then(updatedNotes => this.write(updatedNotes))
         .then(() => newNote)
     }
 
     removeNote(id) {
-        return this.getNotes()
+        return this.getAwesomeNotes()
         .then(notes => notes.filter(note => note.id !== parseInt(id)))
         .then(filteredNotes => this.write(filteredNotes));
     }
